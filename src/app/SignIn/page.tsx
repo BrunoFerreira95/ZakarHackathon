@@ -44,6 +44,9 @@ const SignIn = () => {
           SignUp
           </Link>
         </div>
+          <Link href={'./resetpassword'}>
+            Forget my password
+          </Link>
       </form>
     </div>
   </>

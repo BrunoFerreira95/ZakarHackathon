@@ -7,28 +7,24 @@ import { useEffect } from 'react';
 
 export default function Home() {
   let session
-
-
   
   useEffect(() => {
-    const initSession = async () => {
-      const { data, error } = await supabase.auth.getSession()
-      session = data
-    }    
-    initSession()
+    initSession(session)
   })
- 
-  
+   
   return (
     <>
       {session ? checkUserSession(session) : <SignIn/> }
     </>
   )
 }
-async function checkUserSession(session) {
-  console.log(session)
-  let teste = 'people'
-  switch (teste) {
+const initSession = async (session) => {
+  const { data, error } = await supabase.auth.getSession()
+  session = data
+}    
+
+function checkUserSession(session) {
+  switch (session?.user.app_metadata.userole) {
     case 'admin':
       break;
     case 'people':
